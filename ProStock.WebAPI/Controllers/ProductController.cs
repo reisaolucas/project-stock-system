@@ -31,12 +31,12 @@ namespace ProStock.WebAPI.Controllers
             }            
         }
 
-        [HttpGet("{ProductId}")]
-        public async Task<IActionResult> Get(int ProductId)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get(int Id)
         {
             try
             {
-                var results = await _repository.GetProductByIdAsync(ProductId);
+                var results = await _repository.GetProductByIdAsync(Id);
                 
                 return Ok(results);
             }
@@ -64,11 +64,11 @@ namespace ProStock.WebAPI.Controllers
             return BadRequest(); 
         }
         [HttpPut]
-        public async Task<IActionResult> Put(int ProductId, Product model)
+        public async Task<IActionResult> Put(int Id, Product model)
         {
             try
             {
-                var product = await _repository.GetProductByIdAsync(ProductId);
+                var product = await _repository.GetProductByIdAsync(Id);
 
                 if(product == null) return NotFound();
 
@@ -87,11 +87,11 @@ namespace ProStock.WebAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int ProductId)
+        public async Task<IActionResult> Delete(int Id)
         {
             try
             {
-                var product = await _repository.GetProductByIdAsync(ProductId);
+                var product = await _repository.GetProductByIdAsync(Id);
                 
                 if(product == null) return NotFound();
 

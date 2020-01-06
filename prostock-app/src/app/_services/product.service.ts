@@ -27,6 +27,10 @@ export class ProductService {
   }
 
   putProduct(product: Product) {
-    return this.http.put(`${this.baseUrl}/${product.productId}`, product);
+    return this.http.put(`${this.baseUrl}/${product.id}`, product);
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

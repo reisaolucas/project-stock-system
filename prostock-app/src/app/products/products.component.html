@@ -1,126 +1,124 @@
 <div class="d-flex">
-<div class="form-inline mr-auto" action="">
-  <div class="form-group mb-2">
-    <input type="text" 
+  <div class="form-inline mr-auto" action="">
+    <div class="form-group mb-2">
+      <input type="text" 
       class="form-control mr-2" 
       placeholder="Digite para filtrar"
       [(ngModel)]="searchList">
-  </div>
-</div>
-
-
-<button class="btn btn-outline-primary" (click)="newProduct(template)">
-  <i class="fa fa-plus-circle"></i>&nbsp;
-  Novo Produto</button>
-</div>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>Id</th>
-      <th>Nome do Produto</th>
-      <th>Quantidade</th>
-      <th>Valor</th>
-      <th>Opções</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="products && products.length">
-    <tr *ngFor="let product of foundProducts"> 
-      <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.amount}}</td>
-      <td>{{product.value | currency}}</td>
-      <td>
-        <div class="btn-group">
-        <button class="btn btn-sm btn-success" tooltip="Editar" (click)="editProduct(product, template)">
-          <i class="fa fa-edit"></i>
-        </button>
-        <button class="btn btn-sm btn-danger" tooltip="Excluir">
-          <i class="fa fa-eraser"></i>
-        </button></div>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot *ngIf="!products || !products.length">
-    <tr>
-      <td colspan="5" class="text-center">
-        <h5>
-          Nenhum produto foi encontrado.
-        </h5>
-      </td>
-    </tr>
-  </tfoot>
-</table>
-
-
-
-
-<div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-sizes-name1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4>
-        <button type="button" class="close pull-right" (click)="template.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        
-
-
-
-<form [formGroup]="registerForm">
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label>Nome do Produto</label>
-      <input type="text" class="form-control" 
-      [ngClass]="{'is-invalid': registerForm.get('name').errors
-                  && registerForm.get('name').touched}"
-      formControlName="name" placeholder="">
-      <div class="invalid-feedback">
-        Nome do produto é obrigatório!
-      </div>
-    </div>
-  </div>  
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Quantidade</label>
-      <input type="text" 
-      class="form-control" 
-      [ngClass]="{'is-invalid': registerForm.get('amount').errors
-                  && registerForm.get('amount').touched}" 
-      formControlName="amount" placeholder="">
-      <div class="invalid-feedback">
-        Quantidade é obrigatório!
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label>Valor Unitário</label>
-      <input type="text" class="form-control" 
-      [ngClass]="{'is-invalid': registerForm.get('value').errors
-                  && registerForm.get('value').touched}"
-      formControlName="value" placeholder="">
-      <div class="invalid-feedback">
-        Valor unitário é obrigatório!
-      </div>
     </div>
   </div>
-</form>
-
-
-
-      </div>
-      <div class="modal-footer d-flex">
-        <button class="btn btn-secondary" (click)="template.hide()">
-          Fechar
-        </button>
-        <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="saveChanges(template)">
-          Salvar Alterações
-        </button>
+  
+  
+  <button class="btn btn-outline-primary" (click)="newProduct(template)">
+    <i class="fa fa-plus-circle"></i>&nbsp;
+    Novo Produto</button>
+  </div>
+  
+  <!--Grid Start-->
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Nome do Produto</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="products && products.length">
+      <tr *ngFor="let product of foundProducts"> 
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.amount}}</td>
+        <td>{{product.value | currency}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-success" tooltip="Editar" (click)="editProduct(product, template)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" tooltip="Excluir">
+              <i class="fa fa-eraser"></i>
+            </button></div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!products || !products.length">
+        <tr>
+          <td colspan="5" class="text-center">
+            <h5>
+              Nenhum produto foi encontrado.
+            </h5>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    
+    <!--Modal-->
+    <div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-sizes-name1" class="modal-title pull-left">Produto</h4>
+          <button type="button" class="close pull-right" (click)="template.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          
+          <form [formGroup]="registerForm">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Nome do Produto</label>
+                <input type="text" class="form-control" 
+                [ngClass]="{'is-invalid': registerForm.get('name').errors
+                && registerForm.get('name').touched}"
+                formControlName="name" placeholder="">
+                <div class="invalid-feedback">
+                  Nome do produto é obrigatório!
+                </div>
+              </div>
+            </div>  
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Quantidade</label>
+                <input type="text" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': registerForm.get('amount').errors
+                && registerForm.get('amount').touched}" 
+                formControlName="amount" placeholder="">
+                <div class="invalid-feedback">
+                  Quantidade é obrigatório!
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Valor Unitário</label>
+                <input type="text" class="form-control" 
+                [ngClass]="{'is-invalid': registerForm.get('value').errors
+                && registerForm.get('value').touched}"
+                formControlName="value" placeholder="">
+                <div class="invalid-feedback">
+                  Valor unitário é obrigatório!
+                </div>
+              </div>
+            </div>
+          </form>
+          
+          
+          
+        </div>
+        <div class="modal-footer d-flex">
+          <button class="btn btn-secondary" (click)="template.hide()">
+            Fechar
+          </button>
+          <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="saveChanges(template)">
+            Salvar Alterações
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
+  
+  
+  

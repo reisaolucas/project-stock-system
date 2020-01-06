@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProductService } from '../_services/product.service';
 import { Product } from '../_models/Product';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +18,10 @@ export class ProductsComponent implements OnInit {
   registerForm: FormGroup;
   saveMode = 'post';
 
-  constructor(private productService: ProductService, private modalService: BsModalService) { }
+  constructor(
+    private productService: ProductService,
+    private modalService: BsModalService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.validation();
@@ -39,10 +42,10 @@ export class ProductsComponent implements OnInit {
   }
 
   validation() {
-    this.registerForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      amount: new FormControl('', Validators.required),
-      value: new FormControl('', Validators.required)
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      amount: ['', Validators.required],
+      value: ['', Validators.required]
     });
   }
 
@@ -69,7 +72,7 @@ export class ProductsComponent implements OnInit {
           console.log(error);
         });
       } else {
-        this.currentProduct = Object.assign({productId: this.currentProduct.productId}, this.registerForm.value);
+        this.currentProduct = Object.assign({id: this.currentProduct.id}, this.registerForm.value);
         this.productService.putProduct(this.currentProduct).subscribe(() => {
         template.hide();
         this.getAllProducts();
