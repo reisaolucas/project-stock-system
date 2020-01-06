@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ngx-bootstrap';
-import { BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -21,13 +20,13 @@ import { MenuComponent } from './menu/menu.component';
    ],
    imports: [
       BrowserModule,
-      BsDropdownModule.forRoot(),
       TooltipModule.forRoot(),
       ModalModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
       NoopAnimationsModule,
-      FormsModule
+      FormsModule,
+      ReactiveFormsModule
    ],
    providers: [],
    bootstrap: [

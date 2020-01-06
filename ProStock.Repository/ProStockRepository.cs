@@ -38,7 +38,7 @@ namespace ProStock.Repository
         public async Task<Product[]> GetAllProductsAsync()
         {
             IQueryable<Product> query = _context.Products;
-            query = query.OrderBy(product => product.Id);
+            query = query.OrderByDescending(product => product.Id);
             return await query.ToArrayAsync();
 
         }

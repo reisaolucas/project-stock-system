@@ -22,4 +22,11 @@ export class ProductService {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
   }
 
+  postProduct(product: Product) {
+    return this.http.post(this.baseUrl, product);
+  }
+
+  putProduct(product: Product) {
+    return this.http.put(`${this.baseUrl}/${product.productId}`, product);
+  }
 }
