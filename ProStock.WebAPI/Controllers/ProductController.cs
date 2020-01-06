@@ -63,7 +63,7 @@ namespace ProStock.WebAPI.Controllers
 
             return BadRequest(); 
         }
-        [HttpPut]
+        [HttpPut ("{Id}")]
         public async Task<IActionResult> Put(int Id, Product model)
         {
             try
@@ -86,7 +86,7 @@ namespace ProStock.WebAPI.Controllers
             return BadRequest(); 
         }
 
-        [HttpDelete]
+        [HttpDelete ("{Id}")]
         public async Task<IActionResult> Delete(int Id)
         {
             try

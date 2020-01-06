@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   currentProduct: Product;
   registerForm: FormGroup;
   saveMode = 'post';
+  bodyDeleteProduct = '';
 
   constructor(
     private productService: ProductService,
@@ -59,6 +60,22 @@ export class ProductsComponent implements OnInit {
   newProduct(template: any) {
     this.saveMode = 'post';
     this.openModal(template);
+  }
+  deleteProduct(product: Product, template: any) {
+    this.openModal(template);
+    this.currentProduct = product;
+    this.bodyDeleteProduct = `Tem certeza que deseja excluir o produto ${product.name} ?`;
+  }
+
+  confirmDelete(template: any) {
+    this.productService.deleteProduct(this.currentProduct.id).subscribe(
+      () => {
+          template.hide();
+          this.getAllProducts();
+        }, error => {
+          console.log(error);
+        }
+    );
   }
 
   saveChanges(template: any) {

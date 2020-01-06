@@ -3,7 +3,7 @@
     <div class="form-group mb-2">
       <input type="text" 
       class="form-control mr-2" 
-      placeholder="Digite para filtrar"
+      placeholder="Filtrar pelo Nome"
       [(ngModel)]="searchList">
     </div>
   </div>
@@ -36,7 +36,9 @@
             <button class="btn btn-sm btn-success" tooltip="Editar" (click)="editProduct(product, template)">
               <i class="fa fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-danger" tooltip="Excluir">
+            <button class="btn btn-sm btn-danger" 
+            (click)="deleteProduct(product, confirm)"
+            tooltip="Excluir">
               <i class="fa fa-eraser"></i>
             </button></div>
           </td>
@@ -83,7 +85,7 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Quantidade</label>
-                <input type="text" 
+                <input type="number" 
                 class="form-control" 
                 [ngClass]="{'is-invalid': registerForm.get('amount').errors
                 && registerForm.get('amount').touched}" 
@@ -94,7 +96,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Valor Unitário</label>
-                <input type="text" class="form-control" 
+                <input type="number" step="0.01" class="form-control" 
                 [ngClass]="{'is-invalid': registerForm.get('value').errors
                 && registerForm.get('value').touched}"
                 formControlName="value" placeholder="">
@@ -120,5 +122,29 @@
     </div>
   </div>
   
-  
+  <div bsModal #confirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title pull-left">
+                Deletando Produto
+              </h4>
+              <button type="button" class="close pull-right" (click)="confirm.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <p>{{bodyDeleteProduct}}</p>
+          </div>    
+          <div class="modal-footer btn-group d-flex">      
+              <button type="button" class="btn btn-outline-primary" (click)="confirm.hide()">
+                CANCELAR
+              </button>
+              <button type="button" class="btn btn-outline-danger" (click)="confirmDelete(confirm)">
+                  DELETAR
+              </button>
+          </div>
+        </div>
+    </div>
+  </div>
   
