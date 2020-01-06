@@ -1,0 +1,45 @@
+<div class="form-inline" action="">
+  <div class="form-group mb-2">
+    <input type="text" 
+      class="form-control mr-2" 
+      placeholder="Digite para filtrar"
+      [(ngModel)]="searchList">
+  </div>
+</div>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Id</th>
+      <th>Nome do Produto</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="products && products.length">
+    <tr *ngFor="let product of foundProducts"> 
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.amount}}</td>
+      <td>{{product.value | currency}}</td>
+      <td>
+        <div class="btn-group">
+        <button class="btn btn-sm btn-success" tooltip="Editar">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button class="btn btn-sm btn-danger" tooltip="Excluir">
+          <i class="fa fa-eraser"></i>
+        </button></div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!products || !products.length">
+    <tr>
+      <td colspan="5" class="text-center">
+        <h5>
+          Nenhum produto foi encontrado.
+        </h5>
+      </td>
+    </tr>
+  </tfoot>
+</table>
