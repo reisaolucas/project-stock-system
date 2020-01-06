@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProStock.WebAPI.Data;
-using ProStock.WebAPI.Model;
+using ProStock.Repository;
+using ProStock.Domain;
 
 namespace ProStock.WebAPI.Controllers
 {
@@ -14,8 +14,8 @@ namespace ProStock.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public readonly DataContext _context;
-        public ValuesController(DataContext context)
+        public readonly ProStockContext _context;
+        public ValuesController(ProStockContext context)
         {
             _context = context;
         }
@@ -32,7 +32,7 @@ namespace ProStock.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha na comunicação com o banco de dados");
             }            
         }
 
@@ -42,13 +42,13 @@ namespace ProStock.WebAPI.Controllers
         {
             try
             {
-                var results = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
+                var results = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
                 
                 return Ok(results);
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha na comunicação com o banco de dados");
             }  
         }
 

@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProStock.Domain\ProStock.Domain.csproj" />
+    <ProjectReference Include="..\ProStock.Repository\ProStock.Repository.csproj" />
+  </ItemGroup>
 </Project>
